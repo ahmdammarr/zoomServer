@@ -18,7 +18,7 @@ const token = jwt.sign({
   "iss": process.env.ZOOM_JWT_API_KEY,
   "exp": 1496091964000
 }, process.env.ZOOM_JWT_API_SECRET);
-
+console.log('process.env.ZOOM_JWT_API_KEY',process.env.ZOOM_JWT_API_KEY)
 app.post('/createMeeting', (req, res) => {
   const options = {
     method: 'POST',
