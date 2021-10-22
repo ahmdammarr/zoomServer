@@ -84,6 +84,13 @@ rp(options)
     });
 })
 
+app.post('/test', (req, res) => {
+  res.json({
+    test: 'test'
+  })
+})
+
+
 app.post('/', (req, res) => {
   const timestamp = new Date().getTime() - 30000
   const msg = Buffer.from(process.env.ZOOM_JWT_API_KEY + req.body.meetingNumber + timestamp + req.body.role).toString('base64')
