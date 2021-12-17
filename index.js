@@ -25,7 +25,7 @@ app.post('/createMeeting', (req, res) => {
     url: `https://api.zoom.us/v2/users/${req.body.userId}/meetings`,
     headers: {'content-type': 'application/json', authorization: `Bearer ${token}`},
     body: {
-      topic: 'Demo Meeting 1',
+      topic: req.body.eventName,
       type: 1,
       start_time: `${Date.now().toString()}Z`,
       agenda: 'This is the meeting description',
@@ -50,7 +50,9 @@ rp(options)
         
     })
     .catch( (err)=> {
-        console.log('API call failed, reason ', err);
+      res.json({
+        err: err
+      })   
     });
 })
 
@@ -73,14 +75,14 @@ app.post('/createHrHost', (req, res) => {
 
 rp(options)
     .then( (response)=> {
-        console.log('user', response);
         res.json({
           user: response
-        })
-        
+        })      
     })
     .catch( (err)=> {
-        console.log('API call failed, reason ', err);
+      res.json({
+        err: err
+      })   
     });
 })
 
